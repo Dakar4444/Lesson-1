@@ -1,0 +1,15 @@
+Watching for file changes with StatReloader
+Index page accessed
+"GET / HTTP/1.1" 200 18
+Visited the "About Me" page
+"GET /about/ HTTP/1.1" 200 17
+Visited the "About Me" page
+"GET /about/ HTTP/1.1" 200 17
+Visited the "About Me" page
+"GET /about/ HTTP/1.1" 200 17
+Visited the "About Me" page
+"GET /about/ HTTP/1.1" 200 17
+Index page accessed
+"GET / HTTP/1.1" 200 18
+Index page accessed
+"GET / HTTP/1.1" 200 18
