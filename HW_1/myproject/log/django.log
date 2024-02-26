@@ -13,3 +13,23 @@ Index page accessed
 "GET / HTTP/1.1" 200 18
 Index page accessed
 "GET / HTTP/1.1" 200 18
+Watching for file changes with StatReloader
+Index page accessed
+"GET / HTTP/1.1" 200 18
+Index page accessed
+"GET / HTTP/1.1" 200 18
+Index page accessed
+"GET / HTTP/1.1" 200 18
+Not Found: /hello
+"GET /hello HTTP/1.1" 404 2423
+"GET /about HTTP/1.1" 301 0
+Visited the "About Me" page
+"GET /about/ HTTP/1.1" 200 17
+Visited the "About Me" page
+"GET /about/ HTTP/1.1" 200 17
+Not Found: /about/e
+"GET /about/e HTTP/1.1" 404 2429
+Index page accessed
+"GET / HTTP/1.1" 200 18
+Index page accessed
+"GET / HTTP/1.1" 200 18
