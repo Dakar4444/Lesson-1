@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Order of customer {{ customer.name }}</title>
+</head>
+<body>
+    <h1>Order of customer {{ customer.name }}</h1>
+    
+    <h2>Продукты в заказах за неделю</h2>
+    {% for order in orders_week %}
+        <p>Товары :{{order.order.products.all}}</p>
+        {% for product in order.products.all %}
+        <p>Название товара: {{product.name}}</p>
+        <P>Описание товара : {{product.description}}</p>
+        <p>Цена товара: {{product.price}}</p>
+        {% endfor %}
+    {% endfor %}
+
+    <h2>Продукты в заказах за  месяц</h2>
+    {% for order in orders_month %}
+        <p>Товары :{{order.order.products.all}}</p>
+        {% for product in order.products.all %}
+        <p>Название товара: {{product.name}}</p>
+        <P>Описание товара : {{product.description}}</p>
+        <p>Цена товара: {{product.price}}</p>
+        {% endfor %}
+    {% endfor %}
+
+    <h2>Продукты в заказах за  год</h2>
+    {% for order in orders_year %}
+        <p>Товары :{{order.order.products.all}}</p>
+        {% for product in order.products.all %}
+        <p>Название товара: {{product.name}}</p>
+        <P>Описание товара : {{product.description}}</p>
+        <p>Цена товара: {{product.price}}</p>
+        {% endfor %}
+    {% endfor %}
+</body>
+</html>
