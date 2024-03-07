@@ -9,6 +9,9 @@ class User(models.Model):
     adress = models.CharField(max_length=200)
     date_of_registration = models.DateField()
 
+    def __str__(self):
+        return self.name
+
 
 class Product(models.Model):
     name = models.CharField(max_length=100)
@@ -17,6 +20,9 @@ class Product(models.Model):
     price = models.DecimalField(max_digits=8, decimal_places=2)
     quantity = models.IntegerField(default=0)
     date_of_addition = models.DateField()
+
+    def __str__(self):
+        return self.name
 
 
 class Order(models.Model):
