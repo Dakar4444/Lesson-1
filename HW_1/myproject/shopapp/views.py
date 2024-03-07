@@ -2,38 +2,37 @@ from django.shortcuts import render, get_object_or_404, redirect
 from shopapp.models import Order, User, Product
 from .forms import ProductForm
 from django.core.files.storage import FileSystemStorage
-import datetime
+from datetime import datetime
 
 
 # Create your views here.
 
 def get_order_by_user(request, customer_pk):
     customer = get_object_or_404(User, pk=customer_pk)
-    week_date = datetime.datetime.today() - datetime.timedelta(days=7)
-    month_date = datetime.datetime.today() - datetime.timedelta(days=30)
-    year_date = datetime.datetime.today() - datetime.timedelta(days=365)
-
-    orders_week = Order.objects.filter(customer=customer, date_order__gte=week_date)
-    orders_month = Order.objects.filter(customer=customer, date_order__gte=month_date)
-    orders_year = Order.objects.filter(customer=customer, date_order__gte=year_date)
+    today = datetime.now()
+    orders = Order.objects.filter(customer=customer)
     
-    # Я ЕЩЁ НЕ РАЗОБРАЛСЯ | СЛЕДУЮЩИМ КОМИТОМ СДЕЛАЮ | ОБЕЩАЮ
-    '''
     orders_w = set()
     orders_m = set()
     orders_y = set()
+    # Без помощи Виталика не обошлось
+    for order in orders:
+        date_diff = (today - datetime.fromisoformat(str(order.date_order))).days
+        if date_diff <= 7:
+            for product in order.products.all():
+              orders_w.add(product)
+              orders_m.add(product)
+              orders_y.add(product)
+        elif date_diff <= 30:
+            for product in order.products.all():
+              orders_m.add(product)
+              orders_y.add(product)
+        elif date_diff <= 365:
+            for product in order.products.all():
+              orders_y.add(product)
+        
+    return render(request, "shopapp/customer_order.html", {"orders_week": orders_w, "orders_month": orders_m, "orders_year": orders_y, "customer": customer})
 
-    orders_week = Product.objects.filter(order__customer=customer, order__date_order__gte=week_date).distinct()
-    orders_month = Product.objects.filter(order__customer=customer, order__date_order__gte=month_date).distinct()
-    orders_year = Product.objects.filter(order__customer=customer, order__date_order__gte=year_date).distinct()
-    
-    orders_w.add(orders_week)
-    orders_m.add(orders_month)
-    orders_y.add(orders_year)
-
-    print(orders_month)
-    '''
-    return render(request, "shopapp/customer_order.html", {"orders_week": orders_week, "orders_month": orders_month, "orders_year": orders_year, "customer": customer})
 
 
 def upload_image(request):
