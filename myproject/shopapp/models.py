@@ -15,7 +15,7 @@ class User(models.Model):
 
 class Product(models.Model):
     name = models.CharField(max_length=100)
-    image = models.ImageField(default=None, null=True, blank=True)
+    image = models.ImageField(null=True)
     description = models.TextField()
     price = models.DecimalField(max_digits=8, decimal_places=2)
     quantity = models.IntegerField(default=0)
